@@ -1,330 +1,317 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escala do Reino | Gestão de Voluntários</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://tally.so/widgets/embed.js"></script>
-    <style>
-        :root {
-            --primary: #1e40af; /* Azul Trust */
-            --secondary: #10b981; /* Verde Ação */
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f9fafb;
-            --white: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escala do Reino | Escalas automáticas para igrejas</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+  <meta name="description" content="Sistema para criar escalas automaticamente e organizar voluntários em igrejas e ministérios." />
 
-        body {
-            color: var(--text-dark);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        /* Hero Section */
-        header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: var(--white);
-            padding: 80px 20px;
-            text-align: center;
-        }
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --primary-soft: #e0e7ff;
+      --success: #16a34a;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 14px;
+    }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
 
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        .subheadline {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            margin-bottom: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: var(--white);
-            padding: 18px 36px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-            border: none;
-        }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
+    /* HERO */
+    .hero {
+      padding: 80px 0 60px;
+    }
 
-        /* Identificação da Dor */
-        .pain-section {
-            padding: 80px 20px;
-            background-color: var(--white);
-        }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
 
-        .pain-section h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #dc2626; /* Vermelho alerta */
-        }
+    .hero h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
 
-        .pain-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
 
-        .pain-item {
-            padding: 20px;
-            background: #fef2f2;
-            border-left: 4px solid #ef4444;
-            border-radius: 4px;
-        }
+    .cta {
+      display: inline-block;
+      background: var(--success);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
 
-        /* Apresentação da Solução */
-        .solution-section {
-            padding: 80px 20px;
-            background-color: var(--bg-light);
-        }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
 
-        .solution-section h2 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+    .problems li {
+      list-style: none;
+      margin-bottom: 10px;
+      color: var(--muted);
+    }
 
-        .solution-list {
-            list-style: none;
-            max-width: 700px;
-            margin: 0 auto;
-        }
+    /* SEÇÕES */
+    section {
+      padding: 60px 0;
+    }
 
-        .solution-list li {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-        }
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
 
-        .solution-list li::before {
-            content: "✨";
-            margin-right: 15px;
-        }
+    /* BENEFÍCIOS */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
 
-        /* Benefícios */
-        .benefits-section {
-            padding: 80px 20px;
-            background-color: var(--white);
-        }
+    .benefit {
+      text-align: center;
+      padding: 30px 20px;
+    }
 
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
+    /* VÍDEO */
+    .video-box {
+      background: #000;
+      border-radius: 12px;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 500;
+    }
 
-        .benefit-card {
-            text-align: center;
-            padding: 30px;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-        }
+    /* FORM */
+    .form-section {
+      background: var(--primary);
+      color: white;
+    }
 
-        .benefit-card span {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 10px;
-        }
+    .form-section p {
+      color: #dbeafe;
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        /* Para Quem É */
-        .who-is-it-for {
-            padding: 80px 20px;
-            background-color: var(--primary);
-            color: var(--white);
-            text-align: center;
-        }
+    .form-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px;
+    }
 
-        .who-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
 
-        .who-tag {
-            background: rgba(255,255,255,0.1);
-            padding: 10px 20px;
-            border-radius: 50px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+    /* RESPONSIVO */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
 
-        /* Formulário */
-        .form-section {
-            padding: 80px 20px;
-            background-color: var(--bg-light);
-        }
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
 
-        .cta-final-text {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        /* Confiança */
-        .trust-section {
-            padding: 40px 20px;
-            text-align: center;
-            background: var(--white);
-            border-top: 1px solid #e5e7eb;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .subheadline { font-size: 1.1rem; }
-        }
-    </style>
+      .hero h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <!-- HERO SECTION -->
-    <header>
-        <div class="container">
-            <h1>Organize as escalas da sua igreja sem dor de cabeça, conflitos ou esquecimentos.</h1>
-            <p class="subheadline">O Escala do Reino cria escalas automaticamente e mantém seus voluntários informados, para você liderar com mais tranquilidade.</p>
-            <a href="#cadastro" class="btn">👉 Quero organizar meus voluntários</a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+        <h1>Organize as escalas da sua igreja sem dor de cabeça, conflitos ou esquecimentos.</h1>
+        <p>
+          O <strong>Escala do Reino</strong> ajuda líderes de ministério a organizar
+          voluntários, gerar escalas automaticamente e melhorar a comunicação.
+        </p>
+        <a href="#form" class="cta">Quero participar do acesso inicial</a>
+      </div>
+
+      <div class="card">
+        <h3>Se você lidera voluntários na igreja, provavelmente já passou por isso:</h3>
+        <br>
+        <ul class="problems">
+          <li>❌ Escalas refeitas toda semana</li>
+          <li>❌ Pessoas esquecem o dia de servir</li>
+          <li>❌ Mensagens perdidas no WhatsApp</li>
+          <li>❌ Constrangimento ao cobrar voluntários</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section>
+
+    <div class="container hero-grid">
+
+      <!--<div>
+        <h1>Escalas automáticas, sistema de trocas, fácil recutramento!</h1>
+        <p>
+          
+          Liderar voluntários não precisa ser complicado. <strong>Basta ter a ferramenta certa nas mãos.</strong> 
+        </p>
+        <br>
+        <a href="#form" class="cta">Quero participar do acesso inicial</a>
+      </div>-->
+
+      <div class="card">
+        <h3>O que muda na prática?</h3>
+        <br>
+        <ul class="problems">
+          <li>✅ Menos retrabalho e menos erros manuais</li>
+          <li>✅ Cada voluntário tem seu acesso e é comunicado</li>
+          <li>✅ Você pode focar mais em pessoas e menos em logística</li>
+          <li>✅ Economiza tempo e tem menos estresse</li>
+        </ul>
+      </div>
+
+    </div>
+    <!--<div class="container">
+      <h2 class="section-title">O que muda na prática</h2>
+
+      <div class="grid-3">
+        <div class="card benefit">
+          <h3>Escalas automáticas</h3>
+          <p>Menos retrabalho e menos erros manuais.</p>
         </div>
-    </header>
 
-    <!-- DOR -->
-    <section class="pain-section">
-        <div class="container">
-            <h2>Se você lidera voluntários na igreja, provavelmente já passou por isso:</h2>
-            <div class="pain-grid">
-                <div class="pain-item">Pessoas que esquecem o dia de servir</div>
-                <div class="pain-item">Escalas refeitas toda semana</div>
-                <div class="pain-item">Mensagens perdidas no WhatsApp</div>
-                <div class="pain-item">Constrangimento ao cobrar voluntários</div>
-                <div class="pain-item">Sensação de que tudo depende de você</div>
-            </div>
-            <p style="text-align: center; margin-top: 30px; font-weight: 600; font-size: 1.2rem;">Liderar não deveria ser assim.</p>
+        <div class="card benefit">
+          <h3>Comunicação clara</h3>
+          <p>Cada voluntário sabe quando e onde servir.</p>
         </div>
-    </section>
 
-    <!-- SOLUÇÃO -->
-    <section class="solution-section">
-        <div class="container">
-            <h2>O Escala do Reino foi criado para cuidar da organização do ministério por você.</h2>
-            <ul class="solution-list">
-                <li>Cadastra voluntários e suas disponibilidades</li>
-                <li>Define as atividades de cada ministério</li>
-                <li>Gera escalas automaticamente</li>
-                <li>Garante que cada voluntário saiba quando vai servir</li>
-                <li>Tudo de forma simples e organizada</li>
-            </ul>
+        <div class="card benefit">
+          <h3>Mais tranquilidade</h3>
+          <p>Você lidera sem estresse e sem cobrança constante.</p>
         </div>
-    </section>
+      </div>
+    </div>-->
+  </section>
 
-    <!-- BENEFÍCIOS -->
-    <section class="benefits-section">
-        <div class="container">
-            <h2 style="text-align:center">O que realmente importa:</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <span>✅</span>
-                    <p>Menos faltas e confusão</p>
-                </div>
-                <div class="benefit-card">
-                    <span>✅</span>
-                    <p>Menos cobrança e retrabalho</p>
-                </div>
-                <div class="benefit-card">
-                    <span>✅</span>
-                    <p>Comunicação clara com voluntários</p>
-                </div>
-                <div class="benefit-card">
-                    <span>✅</span>
-                    <p>Ministérios funcionando com previsibilidade</p>
-                </div>
-                <div class="benefit-card">
-                    <span>✅</span>
-                    <p>Mais tempo para cuidar de pessoas</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- VÍDEO -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Veja como funciona</h2>
 
-    <!-- PARA QUEM É -->
-    <section class="who-is-it-for">
-        <div class="container">
-            <h2>O Escala do Reino é ideal para:</h2>
-            <div class="who-grid">
-                <div class="who-tag">Pastores</div>
-                <div class="who-tag">Líderes de ministério</div>
-                <div class="who-tag">Coordenadores de voluntários</div>
-                <div class="who-tag">Igrejas pequenas e médias</div>
-                <div class="who-tag">Eventos e cultos com equipes rotativas</div>
-            </div>
-        </div>
-    </section>
+      <div class="video-box">
+        <video controls="" src="vsl-escaladoreino-lofi.mp4" width="50%">
+            teste
+        </video>
+      </div>
+    </div>
+  </section>
 
-    <!-- CTA FINAL E FORMULÁRIO -->
-    <section id="cadastro" class="form-section">
-        <div class="container">
-            <div class="cta-final-text">
-                <h2>Quer organizar os voluntários da sua igreja sem complicação?</h2>
-                <p>Clique no botão abaixo e participe do acesso inicial.</p>
-            </div>
-            
-            <!-- Tally Embed -->
-            <iframe data-tally-src="https://tally.so/embed/WORWWJ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0" title="Acesso inicial - Escala do Reino"></iframe>
-        </div>
-    </section>
+  <!-- FORMULÁRIO -->
+  <section id="form" class="form-section">
+    <div class="container">
+      <h2 class="section-title">Acesso inicial</h2>
+      <p>Estamos validando a solução com líderes de igreja. Cadastre-se abaixo.</p>
 
-    <!-- REFORÇO DE CONFIANÇA -->
-    <footer class="trust-section">
-        <div class="container">
-            <p><strong>Escala do Reino</strong> - Focado no serviço, livre da burocracia.</p>
-            <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 10px;">Sua liderança mais leve e organizada.</p>
-        </div>
-    </footer>
+      <div class="form-card">
+        <iframe
+          data-tally-src="https://tally.so/embed/WORWWJ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          loading="lazy"
+          width="100%"
+          height="1200"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Acesso inicial - Escala do Reino">
+        </iframe>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Inicialização do Tally
-        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Escala do Reino — Organização a serviço do Reino.
+  </footer>
 
-        // Smooth scroll para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+  <!-- TALLY SCRIPT -->
+  <script>
+    var d = document,
+      w = "https://tally.so/widgets/embed.js",
+      v = function () {
+        if (typeof Tally !== "undefined") {
+          Tally.loadEmbeds();
+        } else {
+          d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) {
+            e.src = e.dataset.tallySrc;
+          });
+        }
+      };
+    if (typeof Tally !== "undefined") v();
+    else if (d.querySelector('script[src="' + w + '"]') == null) {
+      var s = d.createElement("script");
+      s.src = w;
+      s.onload = v;
+      s.onerror = v;
+      d.body.appendChild(s);
+    }
+  </script>
+
 </body>
 </html>
