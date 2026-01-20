@@ -16,8 +16,8 @@
     :root {
       --bg: #f8fafc;
       --card: #ffffff;
-      --primary: #2563eb;
-      --primary-soft: #e0e7ff;
+      /*--primary: #2563eb;*/
+      --primary: linear-gradient(140deg,rgba(97, 92, 240, 1) 0%, rgba(143, 56, 235, 1) 100%);
       --success: #16a34a;
       --text: #0f172a;
       --muted: #64748b;
@@ -38,39 +38,33 @@
       line-height: 1.6;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* HERO */
-    .hero {
-      padding: 80px 0 60px;
+    section {
+      padding: 70px 0;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 48px;
       align-items: center;
     }
 
-    .hero h1 {
+    h1 {
       font-size: 42px;
       line-height: 1.2;
       margin-bottom: 20px;
     }
 
-    .hero p {
+    p {
       font-size: 18px;
       color: var(--muted);
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .cta {
@@ -85,49 +79,70 @@
     .card {
       background: var(--card);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 28px;
       border: 1px solid var(--border);
     }
 
-    .problems li {
+    ul li {
       list-style: none;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       color: var(--muted);
     }
 
-    /* SEÇÕES */
-    section {
-      padding: 60px 0;
-    }
+    /* ===== PREVIEW DO APP AO LADO DOS BENEFÍCIOS ===== */
 
-    .section-title {
-      font-size: 28px;
-      margin-bottom: 40px;
-      text-align: center;
-    }
-
-    /* BENEFÍCIOS */
-    .grid-3 {
+    .benefits-preview {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
     }
 
-    .benefit {
-      text-align: center;
-      padding: 30px 20px;
+    .app-preview {
+      display: flex;
+      justify-content: center;
+      perspective: 1200px;
+     
     }
+
+    .app-preview img {
+        width: 100%;
+        max-width: 520px;
+        border-radius: 16px;
+        box-shadow:
+            0 30px 60px rgba(0, 0, 0, 0.18),
+            0 0 0 1px rgba(226, 232, 240, 0.9);
+        transform: rotate(0deg) rotateY(-20deg) scale(1);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .app-preview img:hover {
+        transform: rotate(0deg) rotateY(0deg) scale(1.7); 
+        box-shadow:
+            0 40px 80px rgba(0, 0, 0, 0.22),
+            0 0 0 1px rgba(226, 232, 240, 1);
+    }   
 
     /* VÍDEO */
+
+    .video-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
     .video-box {
-      background: #000;
-      border-radius: 12px;
-      aspect-ratio: 16 / 9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 500;
+        width: 100%;
+        max-width: 360px; /* CONTROLE DO TAMANHO NO DESKTOP */
+    }
+
+    .video-box video {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 16px;
+        box-shadow:
+            0 30px 60px rgba(0, 0, 0, 0.18),
+            0 0 0 1px rgba(226, 232, 240, 0.9);
     }
 
     /* FORM */
@@ -148,7 +163,6 @@
       padding: 20px;
     }
 
-    /* FOOTER */
     footer {
       text-align: center;
       padding: 30px 0;
@@ -156,19 +170,24 @@
       color: var(--muted);
     }
 
-    /* RESPONSIVO */
+    /* ===== RESPONSIVO ===== */
+
     @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .grid-3 {
-        grid-template-columns: 1fr;
-      }
-
-      .hero h1 {
+      h1 {
         font-size: 34px;
       }
+
+      .hero-grid,
+      .benefits-preview {
+        grid-template-columns: 1fr;
+      }
+
+      .app-preview img {
+        max-width: 100%;
+        transform: rotate(-1deg);
+      }
+
+
     }
   </style>
 </head>
@@ -176,9 +195,8 @@
 <body>
 
   <!-- HERO -->
-  <section class="hero">
+  <section>
     <div class="container hero-grid">
-
       <div>
         <h1>Organize as escalas da sua igreja sem dor de cabeça, conflitos ou esquecimentos.</h1>
         <p>
@@ -191,83 +209,59 @@
       <div class="card">
         <h3>Se você lidera voluntários na igreja, provavelmente já passou por isso:</h3>
         <br>
-        <ul class="problems">
+        <ul>
           <li>❌ Escalas refeitas toda semana</li>
           <li>❌ Pessoas esquecem o dia de servir</li>
           <li>❌ Mensagens perdidas no WhatsApp</li>
           <li>❌ Constrangimento ao cobrar voluntários</li>
         </ul>
       </div>
-
     </div>
   </section>
 
-  <!-- BENEFÍCIOS -->
+  <!-- BENEFÍCIOS + PREVIEW -->
   <section>
-
-    <div class="container hero-grid">
-
-      <!--<div>
-        <h1>Escalas automáticas, sistema de trocas, fácil recutramento!</h1>
-        <p>
-          
-          Liderar voluntários não precisa ser complicado. <strong>Basta ter a ferramenta certa nas mãos.</strong> 
-        </p>
-        <br>
-        <a href="#form" class="cta">Quero participar do acesso inicial</a>
-      </div>-->
-
+    <div class="container benefits-preview">
       <div class="card">
         <h3>O que muda na prática?</h3>
         <br>
-        <ul class="problems">
+        <ul>
           <li>✅ Menos retrabalho e menos erros manuais</li>
-          <li>✅ Cada voluntário tem seu acesso e é comunicado</li>
-          <li>✅ Você pode focar mais em pessoas e menos em logística</li>
-          <li>✅ Economiza tempo e tem menos estresse</li>
+          <li>✅ Cada voluntário tem seu próprio acesso</li>
+          <li>✅ Comunicação clara e automática</li>
+          <li>✅ Mais tempo para cuidar de pessoas</li>
         </ul>
       </div>
 
-    </div>
-    <!--<div class="container">
-      <h2 class="section-title">O que muda na prática</h2>
-
-      <div class="grid-3">
-        <div class="card benefit">
-          <h3>Escalas automáticas</h3>
-          <p>Menos retrabalho e menos erros manuais.</p>
-        </div>
-
-        <div class="card benefit">
-          <h3>Comunicação clara</h3>
-          <p>Cada voluntário sabe quando e onde servir.</p>
-        </div>
-
-        <div class="card benefit">
-          <h3>Mais tranquilidade</h3>
-          <p>Você lidera sem estresse e sem cobrança constante.</p>
-        </div>
+      <div class="app-preview">
+        <img
+          src="escala-do-reino-highlight-gemini.png"
+          alt="Tela do sistema Escala do Reino com geração automática de escalas"
+        />
       </div>
-    </div>-->
+    </div>
   </section>
 
   <!-- VÍDEO -->
   <section>
     <div class="container">
-      <h2 class="section-title">Veja como funciona</h2>
-
-      <div class="video-box">
-        <video controls="" src="vsl-escaladoreino-lofi.mp4" width="50%">
-            teste
-        </video>
-      </div>
+        <h2 style="text-align:center;margin-bottom:32px;">Veja como funciona</h2>
+        <div class="video-wrapper">
+            <div class="video-box">
+                <video
+                src="vsl-escaladoreino-lofi.mp4"
+                controls
+                playsinline
+                ></video>
+            </div>
+        </div>
     </div>
   </section>
 
-  <!-- FORMULÁRIO -->
+  <!-- FORM -->
   <section id="form" class="form-section">
     <div class="container">
-      <h2 class="section-title">Acesso inicial</h2>
+      <h2 style="text-align:center;">Acesso inicial</h2>
       <p>Estamos validando a solução com líderes de igreja. Cadastre-se abaixo.</p>
 
       <div class="form-card">
@@ -277,41 +271,15 @@
           width="100%"
           height="1200"
           frameborder="0"
-          marginheight="0"
-          marginwidth="0"
           title="Acesso inicial - Escala do Reino">
         </iframe>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     © 2026 Escala do Reino — Organização a serviço do Reino.
   </footer>
-
-  <!-- TALLY SCRIPT -->
-  <script>
-    var d = document,
-      w = "https://tally.so/widgets/embed.js",
-      v = function () {
-        if (typeof Tally !== "undefined") {
-          Tally.loadEmbeds();
-        } else {
-          d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) {
-            e.src = e.dataset.tallySrc;
-          });
-        }
-      };
-    if (typeof Tally !== "undefined") v();
-    else if (d.querySelector('script[src="' + w + '"]') == null) {
-      var s = d.createElement("script");
-      s.src = w;
-      s.onload = v;
-      s.onerror = v;
-      d.body.appendChild(s);
-    }
-  </script>
 
 </body>
 </html>
